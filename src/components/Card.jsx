@@ -98,11 +98,11 @@ function Card(props) {
 
             <div className="flex w-3/5 items-center">
 
-                <div className="1/5 border" >
+                <div className="1/5 " >
                     <img className="w-20 h-20" src={props.item.imageSrc} alt="Samsung Galaxy S8" />
                 </div>
 
-                <div className="w-4/5 h-full border text-left p-5">
+                <div className="w-4/5 h-full  text-left p-5">
                     <div>
                         {/* <p>Samsung Galaxy S8</p> */}
                         <p>{props.item.name}</p>
@@ -115,13 +115,13 @@ function Card(props) {
 
                     <div>
                         {/* <button id="remove-button" value={"remove"} name="remove">remove</button> */}
-                        <input type="button" onClick={removePhone} value="remove" id="remove-button" className=" text-cyan-800 hover:cursor-pointer hover:text-white"/>
+                        <input type="button" onClick={removePhone} value="remove" id="remove-button" className=" text-cyan-800 hover:cursor-pointer hover:text-red-600"/>
                         
                     </div>
                 </div>
 
 
-                <div className="border w-1/12">
+                <div className=" w-1/12">
                     <div>
                         <button onClick={() => {
                             increaseNumber(props.index)

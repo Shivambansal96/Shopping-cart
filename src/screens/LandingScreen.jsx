@@ -7,6 +7,12 @@ function LandingScreen(item) {
     const[data, setData] = useState(Data)
     const [totalAmount, setTotalAmount] = useState(2199.96)        
        
+    function clearCart() {
+        alert('clearCart ?')
+
+    }
+
+
     return(
         <div id="landing-screen">
             <div id="navbar" className="flex h-16 w-full bg-blue-700 text-white">
@@ -14,8 +20,13 @@ function LandingScreen(item) {
                     <p className="text-3xl">Shopping Cart</p>
                 </div>
 
-                <div className="right w-1/2 flex justify-center items-center">
-                    <a href=""><i className="fa-solid fa-cart-plus text-2xl"></i></a>
+                <div className="right border-2 w-1/2 flex justify-center items-center">
+                    <a href=""><i className="fa-solid fa-cart-plus text-3xl relative">
+                        <div className="h-3 w-4 p-2 flex justify-center items-center bg-white text-black absolute -top-1 -right-1 border-2 rounded-xl">
+                            <p className="text-sm">4</p> 
+                            {/* <p>{item.totalSum}</p>  check this line  */}
+                        </div>
+                    </i></a>
                 </div>
             </div>
 
@@ -62,7 +73,7 @@ function LandingScreen(item) {
 
                 <div className="below">
                     <div id="clear-cart-button" className="text-center">
-                        <button type="submit">Clear Cart</button>
+                        <button className="hover:text-red-600" onClick={clearCart} type="submit">Clear Cart</button>
                     </div>
                 </div>
 
