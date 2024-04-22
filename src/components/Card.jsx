@@ -1,23 +1,30 @@
 // import { useState } from "react";
+import {Data} from "../components/Data.js"
+import { useEffect, useState } from "react";
 
 function Card(props) {
 
-
+    
     function increaseNumber(index) {
-
-        props.setData((previous) => {
-
-            console.log(previous[index].quantity)
-
+        
+            props.setCartItems((previous) => {
+                // console.log(previous)
+                return previous + 1;
+            })
+        
+            props.setData((previous) => {
+            
+            // console.log('Before', previous[index].quantity)
+            
             previous[index].quantity ++;
-
-            console.log(previous[index].quantity)
-
+            
+            // console.log('after', previous[index].quantity)
+            
             props.setTotalAmount((previous) => {
                 
-                    console.log(previous)
-
-                return (previous + props.item.price)
+                // console.log(previous)
+                
+                return (previous + props.item.price)            // returning total amount
 
 
             })
@@ -25,7 +32,7 @@ function Card(props) {
             //     previous.reduce(accumulator, currentValue)
             // })
 
-            console.log(previous);
+            // console.log(previous);
 
             return [...previous];
 
@@ -35,16 +42,27 @@ function Card(props) {
 
     function decreaseNumber(index) {
 
+        props.setCartItems((previous) => {
+            // console.log(previous)
+            return previous - 1;
+        })
 
         props.setData((previous) => {
 
-            // if(previous[index].quantity > 1) {
+            
+            previous[index].quantity--;
+            console.log(previous[index].quantity)
 
-                previous[index].quantity--;
+            
+            if(previous[index].quantity == 0) {
+
+                removePhone();
+            }
+
 
                 props.setTotalAmount((previous) => {
                 
-                    console.log(typeof props.item.price)
+                    // console.log(typeof props.item.price)
 
                 return (previous - props.item.price)    
             })
@@ -57,7 +75,7 @@ function Card(props) {
 
             // }
 
-            console.log(previous);
+            // console.log(previous);
 
             return [...previous];
 
@@ -70,25 +88,12 @@ function Card(props) {
 
     function removePhone(index) {
 
-        const data = (props.item);
+        const newData = [...props.data];
 
-        console.log(data);
+        newData.splice(index, 1);
 
+        props.setData(newData);
 
-        // const data =  [...dataTwo]
-
-        // data.splice(props.index, 1)
-
-        // console.log("After Splice" + data);
-
-
-        // console
-
-        // props.setData(data)
-
-        // console.log("Last One" + data);
-
-        // return(data)
 
     
     }
@@ -115,7 +120,7 @@ function Card(props) {
 
                     <div>
                         {/* <button id="remove-button" value={"remove"} name="remove">remove</button> */}
-                        <input type="button" onClick={removePhone} value="remove" id="remove-button" className=" text-cyan-800 hover:cursor-pointer hover:text-red-600"/>
+                        <input type="button" onClick={()=> {removePhone(props.index)}} value="remove" id="remove-button" className=" text-cyan-800 hover:cursor-pointer hover:text-red-600"/>
                         
                     </div>
                 </div>
@@ -123,16 +128,13 @@ function Card(props) {
 
                 <div className=" w-1/12">
                     <div>
-                        <button onClick={() => {
-                            increaseNumber(props.index)
-                            
-                            }}><i className="fa-solid fa-angle-up"></i></button>
+                        <button onClick={() => {increaseNumber(props.index)}}><i className="fa-solid fa-angle-up"></i></button>
                     </div>
 
                     <div>
                         {/* <p>1</p>  */}
                         <p>{props.item.quantity}</p>
-                        <p></p>
+                        {/* <p></p> */}
                     </div>
 
                     <div>
